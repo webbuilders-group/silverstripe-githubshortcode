@@ -1,0 +1,9 @@
+---
+Name: githubbuttons
+---
+GitHubShortCode:
+    UseBasicAuth: false #Use GitHub Authentication or not
+    Username: null #GitHub Username
+    Password: null #GitHub Password
+    CacheTime: 86400 #Cache time in seconds
+    UseShortHandNumbers: true #Use short hand numbers i.e 5.6K or not
