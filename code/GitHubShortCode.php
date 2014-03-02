@@ -40,7 +40,7 @@ class GitHubShortCode {
             
             //Verify a 200, if not say the repo errored out and cache false
             if(empty($response) || $response===false || !property_exists($response, 'watchers') || !property_exists($response, 'forks')) {
-                $cachedData=array('stars'=>'N/A', 'forks'=>'N/A');
+                $cachedData=array('stargazers'=>'N/A', 'forks'=>'N/A');
             }else {
                 if($config->UseShortHandNumbers==true) {
                     $stargazers=self::shortHandNumber($response->stargazers_count);
