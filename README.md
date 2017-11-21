@@ -6,12 +6,11 @@ Add a short code for adding GitHub Star and Fork buttons with counts to a HTMLTe
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe CMS 3.x
+* SilverStripe CMS 4.x
 
 
 ## Installation
-* Download the module from here https://github.com/webbuilders-group/silverstripe-githubshortcode/archive/master.zip
-* Extract the downloaded archive into your site root so that the destination folder is called githubshortcode, opening the extracted folder should contain _config.php in the root along with other files/folders
+* Run composer require webbuilders-group/silverstripe-githubshortcode 1.0.0 in the project folder
 * Run dev/build?flush=all to regenerate the manifest
 
 

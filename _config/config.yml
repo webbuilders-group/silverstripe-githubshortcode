@@ -7,3 +7,9 @@ GitHubShortCode:
     Password: null #GitHub Password
     CacheTime: 86400 #Cache time in seconds
     UseShortHandNumbers: true #Use short hand numbers i.e 5.6K or not
+
+SilverStripe\Core\Injector\Injector:
+  Psr\SimpleCache\CacheInterface.GitHubShortCode:
+    factory: SilverStripe\Core\Cache\CacheFactory
+    constructor:
+      namespace: "GitHubShortCode"

@@ -1,4 +1,15 @@
 <?php
+
+namespace WebbuildersGroup\GitHubShortCode;
+
+use Psr\SimpleCache\CacheInterface;
+use SilverStripe\Core\Injector\Injector;
+
+use SilverStripe\View\Requirements;
+use SilverStripe\View\SSViewer;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\View\ViewableData;
+
 class GitHubShortCode {
     public static function parse($arguments, $content=null, $parser=null) {
         if(!array_key_exists('repo', $arguments) || empty($arguments['repo']) || strpos($arguments['repo'], '/')<=0) {
@@ -7,7 +18,6 @@ class GitHubShortCode {
         
         //Get Config
         $config=Config::inst()->forClass('GitHubShortCode');
-        
         
         $obj=new ViewableData();
         
@@ -28,19 +38,21 @@ class GitHubShortCode {
             $obj->ShowButton='both';
         }
         
-        
         //Retrieve Stats
-        SS_Cache::set_cache_lifetime('GitHubShortCode', $config->CacheTime);
-        
+        $cache = Injector::inst()->get(CacheInterface::class . '.GitHubShortCode');
+
+        //sets the key
         $cacheKey=md5('GitHubShortCode_'.$arguments['repo']);
-        $cache=SS_Cache::factory('GitHubShortCode');
-        $cachedData=$cache->load($cacheKey);
-        if($cachedData==null) {
+
+        // create a new item by trying to get it from the cache
+        $myValue = $cache->get($cacheKey);
+
+        if(!$cache->has($cacheKey)) {
             $response=self::getFromAPI($arguments['repo'], $config);
             
             //Verify a 200, if not say the repo errored out and cache false
             if(empty($response) || $response===false || !property_exists($response, 'watchers') || !property_exists($response, 'forks')) {
-                $cachedData=array('stargazers'=>'N/A', 'forks'=>'N/A');
+                $cachedData=array('stars'=>'N/A', 'forks'=>'N/A');
             }else {
                 if($config->UseShortHandNumbers==true) {
                     $stargazers=self::shortHandNumber($response->stargazers_count);
@@ -54,7 +66,7 @@ class GitHubShortCode {
             }
             
             //Cache response to file system
-            $cache->save(serialize($cachedData), $cacheKey);
+            $cache->set($cacheKey, serialize($cachedData));
         }else {
             $cachedData=unserialize($cachedData);
         }
@@ -66,7 +78,7 @@ class GitHubShortCode {
         
         
         //Init ss viewer and render
-        Requirements::css(GITHUBSHORTCODE_BASE.'/css/GitHubButtons.css');
+        Requirements::css('webbuilders-group/silverstripe-githubshortcode:css/GitHubButtons.css');
         
         $ssViewer=new SSViewer('GitHubButtons');
         return $ssViewer->process($obj);
@@ -127,4 +139,3 @@ class GitHubShortCode {
 	    return $number;
 	}
 }
-?>
