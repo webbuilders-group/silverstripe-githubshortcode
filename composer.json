@@ -27,6 +27,9 @@
         "issues": "https://github.com/webbuilders-group/silverstripe-githubshortcode/issues"
     },
     "extra": {
+		"branch-alias": {
+			"dev-master": "2.0.x-dev"
+		},
 		"expose": [
             "css"
         ]
