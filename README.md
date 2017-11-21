@@ -10,7 +10,7 @@ Add a short code for adding GitHub Star and Fork buttons with counts to a HTMLTe
 
 
 ## Installation
-* Run composer require webbuilders-group/silverstripe-githubshortcode 1.0.0 in the project folder
+* Run composer require webbuilders-group/silverstripe-githubshortcode dev-master in the project folder
 * Run dev/build?flush=all to regenerate the manifest
 
 
