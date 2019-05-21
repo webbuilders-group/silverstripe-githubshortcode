@@ -82,6 +82,9 @@ class GitHubShortCode
 
         //Init ss viewer and render
         Requirements::css('webbuilders-group/silverstripe-githubshortcode:css/GitHubButtons.css');
+
+        $ssViewer = new SSViewer('Includes/GitHubButtons');
+        return $ssViewer->process($obj);
     }
     /**
      * Loads the data from the github api

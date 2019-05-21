@@ -37,7 +37,7 @@ In 3.1 the short codes above will work as included however the updated syntax fo
 There are a few configuration options available to you:
 
 ```yml
-GitHubShortCode:
+WebbuildersGroup\GitHubShortCode\GitHubShortCode:
     CacheTime: 86400 #Cache time in seconds (default is 1 day, remember the GitHub api is rate limited)
     UseBasicAuth: false #Use GitHub authentication or not
     Username: "your username" #GitHub Username, required if using authentication
