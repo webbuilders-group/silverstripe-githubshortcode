@@ -1,7 +1,7 @@
 ---
 Name: githubbuttons
 ---
-GitHubShortCode:
+WebbuildersGroup\GitHubShortCode:
     UseBasicAuth: false #Use GitHub Authentication or not
     Username: null #GitHub Username
     Password: null #GitHub Password
