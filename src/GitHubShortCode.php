@@ -83,7 +83,6 @@ class GitHubShortCode
         //Init ss viewer and render
         Requirements::css('webbuilders-group/silverstripe-githubshortcode:css/GitHubButtons.css');
     }
-
     /**
      * Loads the data from the github api
      * @param {string} $url URL to load
