@@ -6,7 +6,7 @@ Add a short code for adding GitHub Star and Fork buttons with counts to a HTMLTe
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe CMS 4.x | 5.x
+* SilverStripe CMS ^4|^5|^6
 
 
 ## Installation

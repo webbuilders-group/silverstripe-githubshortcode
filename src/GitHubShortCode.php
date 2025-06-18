@@ -3,11 +3,12 @@
 namespace WebbuildersGroup\GitHubShortCode;
 
 use Psr\SimpleCache\CacheInterface;
-use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Core\Config\Configurable;
 
+use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Model\ModelData;
 use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
-use SilverStripe\Core\Config\Configurable;
 use SilverStripe\View\ViewableData;
 
 class GitHubShortCode
@@ -22,7 +23,7 @@ class GitHubShortCode
         //Get Config
         $config = self::config();
 
-        $obj = new ViewableData();
+        $obj = (class_exists(ModelData::class)) ? new ModelData() : new ViewableData();
 
         //Add the Respository Setting
         $obj->Repository = $arguments['repo'];
@@ -91,7 +92,7 @@ class GitHubShortCode
      * @param {string} $url URL to load
      * @param {Config_ForClass} $config Configuration object for this short code
      * @return {stdObject} Returns the JSON Response from the GitHub API
-     * 
+     *
      * @see http://developer.github.com/v3/repos/#get
      */
     final protected static function getFromAPI($repo, $config)
